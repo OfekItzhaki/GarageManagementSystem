@@ -41,7 +41,7 @@ internal class Program
         var garageService = new GarageService(dataService);
 
         var car = new Car(VehicleType.Car, "34523532", "Engine doesn't work", 1999);
-        //garageService.InsertVehicle(car);
+        garageService.InsertVehicle(car);
         var list = garageService.GetVehiclesSortedByYear();
 
         garageService.ChangeStatus("34523532", Status.Fixed);

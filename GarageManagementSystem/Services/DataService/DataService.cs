@@ -29,8 +29,13 @@ namespace GarageManagementSystem.Services.DataService
         {
             try
             {
+                var workingDirectory = Environment.CurrentDirectory;
+                var projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+                var fileName = "DB.json";
+                var fullPath = Path.Combine(projectDirectory, fileName);
+
                 IFormatter formatter = new BinaryFormatter();
-                var stream = new FileStream(@"DB.json", FileMode.OpenOrCreate, FileAccess.Read);
+                var stream = new FileStream($@"{fullPath}", FileMode.OpenOrCreate, FileAccess.Read);
                 if (stream.Length == 0)
                     Vehicles = new List<Vehicle> { new Vehicle() };
                 else
@@ -49,8 +54,13 @@ namespace GarageManagementSystem.Services.DataService
         {
             try
             {
+                var workingDirectory = Environment.CurrentDirectory;
+                var projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+                var fileName = "DB.json";
+                var fullPath = Path.Combine(projectDirectory, fileName);
+
                 IFormatter formatter = new BinaryFormatter();
-                Stream stream = new FileStream(@"DB.json", FileMode.OpenOrCreate, FileAccess.Write);
+                Stream stream = new FileStream($@"{fullPath}", FileMode.OpenOrCreate, FileAccess.Write);
 
                 formatter.Serialize(stream, Vehicles);
 
